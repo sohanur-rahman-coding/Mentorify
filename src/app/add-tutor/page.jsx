@@ -1,0 +1,221 @@
+"use client";
+import React from "react";
+import {
+  FieldError,
+  Input,
+  Label,
+  TextField,
+  Select,
+  ListBox,
+  TextArea,
+  Button,
+  Card,
+} from "@heroui/react";
+const AddTutor = () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const Data = Object.fromEntries(formData.entries());
+
+    console.log(Data);
+
+    const res = await fetch(`http://localhost:5000/tutors`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(Data),
+    });
+
+    const data = await res.json();
+    console.log(data);
+    window.location.reload();
+  };
+
+  return (
+    <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100">
+      <Card className="w-full  p-6">
+        <h2 className="text-2xl font-bold mb-6 text-center">Add a New Tutor</h2>
+        <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Tutor Name */}
+            <div className="md:col-span-2">
+              <TextField name="tutorName" isRequired>
+                <Label>Tutor Name</Label>
+                <Input placeholder="Your Name" className="rounded-2xl" />
+                <FieldError />
+              </TextField>
+            </div>
+
+            {/* Photo URL */}
+            <div className="md:col-span-2">
+              <TextField name="photo" type="url" isRequired>
+                <Label>Photo URL </Label>
+                <Input
+                  placeholder="https://i.ibb.co/example.jpg"
+                  className="rounded-2xl"
+                />
+                <FieldError />
+              </TextField>
+            </div>
+
+            {/* Subject / Category Dropdown */}
+            <div>
+              <Select
+                name="category"
+                isRequired
+                className="w-full"
+                placeholder="Select subject"
+              >
+                <Label>Subject / Category</Label>
+                <Select.Trigger className="rounded-2xl">
+                  <Select.Value />
+                  <Select.Indicator />
+                </Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    <ListBox.Item id="Mathematics" textValue="Mathematics">
+                      Mathematics
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="Physics" textValue="Physics">
+                      Physics
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="Chemistry" textValue="Chemistry">
+                      Chemistry
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="Biology" textValue="Biology">
+                      Biology
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item
+                      id="Programming"
+                      textValue="Programming & Tech"
+                    >
+                      Programming & Tech
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="English" textValue="English">
+                      English
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                  </ListBox>
+                </Select.Popover>
+              </Select>
+            </div>
+
+            {/* Available Days and Time Slot */}
+            <TextField name="availableSlots" isRequired>
+              <Label>Available Days & Time Slot</Label>
+              <Input
+                placeholder="Sun - Thu 5:00 PM - 8:00 PM"
+                className="rounded-2xl"
+              />
+              <FieldError />
+            </TextField>
+
+            {/* Hourly Fee */}
+            <TextField name="hourlyFee" type="number" isRequired>
+              <Label>Hourly Fee</Label>
+              <Input
+                type="number"
+                placeholder="e.g. 500"
+                className="rounded-2xl"
+              />
+              <FieldError />
+            </TextField>
+
+            {/* Total Slot */}
+            <TextField name="totalSlot" type="number" isRequired>
+              <Label>Total Slot</Label>
+              <Input
+                type="number"
+                placeholder="e.g. 5"
+                className="rounded-2xl"
+              />
+              <FieldError />
+            </TextField>
+
+            {/* Session Start Date */}
+            <div className="md:col-span-2">
+              <TextField name="sessionStartDate" type="date" isRequired>
+                <Label>Session Start Date</Label>
+                <Input type="date" className="rounded-2xl" />
+                <FieldError />
+              </TextField>
+            </div>
+
+            {/* Institution & Experience */}
+            <div className="md:col-span-2">
+              <TextField name="institutionExperience" isRequired>
+                <Label>Institution & Experience</Label>
+                <Input
+                  placeholder="e.g. Dhaka Polytechnic Institute, 2 Years Experience"
+                  className="rounded-2xl"
+                />
+                <FieldError />
+              </TextField>
+            </div>
+
+            {/* Location */}
+            <div>
+              <TextField name="location" isRequired>
+                <Label>Location (Area/City)</Label>
+                <Input
+                  placeholder="e.g. Mirpur, Dhaka"
+                  className="rounded-2xl"
+                />
+                <FieldError />
+              </TextField>
+            </div>
+
+            {/* Teaching Mode Dropdown */}
+            <div>
+              <Select
+                name="teachingMode"
+                isRequired
+                className="w-full"
+                placeholder="Select mode"
+              >
+                <Label>Teaching Mode</Label>
+                <Select.Trigger className="rounded-2xl">
+                  <Select.Value />
+                  <Select.Indicator />
+                </Select.Trigger>
+                <Select.Popover>
+                  <ListBox>
+                    <ListBox.Item id="Online" textValue="Online">
+                      Online
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="Offline" textValue="Offline">
+                      Offline
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                    <ListBox.Item id="Both" textValue="Both">
+                      Both (Online & Offline)
+                      <ListBox.ItemIndicator />
+                    </ListBox.Item>
+                  </ListBox>
+                </Select.Popover>
+              </Select>
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            variant="outline"
+            className="rounded-none w-full bg-black text-white"
+          >
+            Add Tutor
+          </Button>
+        </form>
+      </Card>
+    </div>
+  );
+};
+
+export default AddTutor;

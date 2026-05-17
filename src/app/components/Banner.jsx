@@ -51,7 +51,7 @@ export function Banner() {
   };
 
   return (
-    <div className="relative my-4 w-full h-[500px] md:h-[600px] overflow-hidden rounded-3xl border border-default-200 dark:border-default-100 shadow-2xl group">
+    <div className="relative my-8 w-full h-[500px] md:h-[600px] overflow-hidden rounded-3xl border border-default-200 dark:border-default-100 shadow-2xl group">
       <div
         className="w-full h-full flex transition-transform duration-700 ease-in-out"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}

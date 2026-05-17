@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "your-cms-bucket.s3.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "**",
+      },
     ],
   },
 };
