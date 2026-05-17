@@ -33,10 +33,10 @@ const AddTutor = () => {
   };
 
   return (
-    <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100">
-      <Card className="w-full  p-6">
+    <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100 mx-auto">
+      <Card className="  p-6 mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center">Add a New Tutor</h2>
-        <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl">
+        <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Tutor Name */}
             <div className="md:col-span-2">

@@ -33,12 +33,12 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 bg-background overflow-hidden">
+    <section className="relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-24 bg-background overflow-hidden">
       {/* Background Decorative Blur Gradients */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-80 h-80 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="mb-16 text-center relative z-10">
+      <div className="mb-12 text-center relative z-10">
         <span className="text-xs uppercase tracking-[0.2em] font-bold text-cyan-500 bg-cyan-500/10 px-4 py-1.5 rounded-full">
           Workflow
         </span>

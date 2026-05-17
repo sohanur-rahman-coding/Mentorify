@@ -16,13 +16,20 @@ const TutorsPage = async () => {
   console.log(data);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-background">
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-          Available Verified Tutors
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-background">
+      <div className="text-center mb-12">
+        <span className="text-xs uppercase tracking-widest font-bold text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded-full">
+          Elite pool
+        </span>
+        <h1 className="text-3xl sm:text-5xl font-black text-foreground mt-4">
+          Explore All{" "}
+          <span className="text-black">
+            Verified Tutors
+          </span>
         </h1>
-        <p className="mt-3 text-lg text-foreground/60 max-w-2xl mx-auto">
-          Find and book the perfect mentor to accelerate your learning journey.
+        <p className="mt-3 text-sm sm:text-base text-foreground/50 max-w-xl mx-auto font-medium">
+          Connect with verified university alumni and industry experts tailored
+          to your learning schedule.
         </p>
       </div>
 
