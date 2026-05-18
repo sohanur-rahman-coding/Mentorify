@@ -17,30 +17,32 @@ import Link from "next/link";
 import { Button } from "@heroui/react";
 import { useTheme } from "next-themes";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 export function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { data: sessionData, isPending } = authClient.useSession();
-  console.log(sessionData, "sessiondata");
+
   const user = sessionData?.user;
-  console.log(user, "user");
-  console.log(isPending, "ispending");
+
+  const isActive = (path) => pathname === path;
 
   const handleLogout = async () => {
     try {
       await authClient.signOut({
         onSuccess: () => {
-          router.push("/login"); // লগআউট সফল হলে লগইন পেজে রিডাইরেক্ট হবে
+          router.push("/login");
           router.refresh();
         },
       });
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error(error);
     }
   };
 
@@ -48,7 +50,7 @@ export function Navbar() {
     <nav className="w-full pt-4 px-4 sm:px-6 lg:px-8 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto bg-background/70 dark:bg-black/40 backdrop-blur-md border border-default-200 dark:border-default-100 shadow-lg rounded-full px-6 py-2 transition-all duration-300">
         <div className="flex justify-between h-14 items-center">
-          {/* লোগো */}
+          {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-sm group-hover:scale-105 transition-transform">
               <BookOpen className="w-4 h-4" />
@@ -58,39 +60,58 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* ডেস্কটপ মেনু লিঙ্কসমূহ */}
+          {/* Desktop Navigation Links */}
           <div className="hidden md:flex gap-6 items-center">
             <Link
               href="/"
-              className="font-medium text-sm text-foreground/80 hover:text-foreground transition-colors"
+              className={`font-semibold text-sm transition-colors ${
+                isActive("/")
+                  ? "text-cyan-500 dark:text-cyan-400"
+                  : "text-foreground/80 hover:text-foreground"
+              }`}
             >
               Home
             </Link>
             <Link
               href="/tutors"
-              className="font-medium text-sm text-foreground/80 hover:text-foreground transition-colors"
+              className={`font-semibold text-sm transition-colors ${
+                isActive("/tutors")
+                  ? "text-cyan-500 dark:text-cyan-400"
+                  : "text-foreground/80 hover:text-foreground"
+              }`}
             >
               Tutors
             </Link>
 
-            {/* ইউজার লগইন থাকলে প্রাইভেট রুট দেখাবে */}
             {!isPending && user && (
               <>
                 <Link
                   href="/add-tutor"
-                  className="font-medium text-sm text-foreground/80 hover:text-foreground transition-colors"
+                  className={`font-semibold text-sm transition-colors ${
+                    isActive("/add-tutor")
+                      ? "text-cyan-500 dark:text-cyan-400"
+                      : "text-foreground/80 hover:text-foreground"
+                  }`}
                 >
                   Add Tutor
                 </Link>
                 <Link
                   href="/my-tutors"
-                  className="font-medium text-sm text-foreground/80 hover:text-foreground transition-colors"
+                  className={`font-semibold text-sm transition-colors ${
+                    isActive("/my-tutors")
+                      ? "text-cyan-500 dark:text-cyan-400"
+                      : "text-foreground/80 hover:text-foreground"
+                  }`}
                 >
                   My Tutors
                 </Link>
                 <Link
                   href="/my-booked-sessions"
-                  className="font-medium text-sm text-foreground/80 hover:text-foreground transition-colors"
+                  className={`font-semibold text-sm transition-colors ${
+                    isActive("/my-booked-sessions")
+                      ? "text-cyan-500 dark:text-cyan-400"
+                      : "text-foreground/80 hover:text-foreground"
+                  }`}
                 >
                   My Booked Sessions
                 </Link>
@@ -98,9 +119,8 @@ export function Navbar() {
             )}
           </div>
 
-          {/* ডেস্কটপ রাইট সাইড অ্যাকশন বাটন */}
+          {/* Right side actions (Theme Toggle & Profile/Sign In) */}
           <div className="hidden md:flex items-center gap-4">
-            {/* থিম টগলার */}
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full hover:bg-default-100 text-foreground transition-colors"
@@ -113,7 +133,6 @@ export function Navbar() {
               )}
             </button>
 
-            {/* সেশন লোড হওয়া পর্যন্ত ব্ল্যাঙ্ক থাকবে, লোড হলে কন্ডিশনাল UI দেখাবে */}
             {!isPending &&
               (!user ? (
                 <>
@@ -133,14 +152,15 @@ export function Navbar() {
                   </Link>
                 </>
               ) : (
-                /* প্রোফাইল ড্রপডাউন */
                 <div className="relative group">
                   <button className="flex items-center gap-2 p-1 rounded-full hover:bg-default-100 transition-colors">
                     <div className="w-8 h-8 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-xs ring-2 ring-default-300 dark:ring-default-100 overflow-hidden">
                       {user.image ? (
-                        <img
+                        <Image
                           src={user.image}
                           alt={user.name}
+                          width={200}
+                          height={200}
                           className="w-full h-full object-cover"
                         />
                       ) : user.name ? (
@@ -151,6 +171,7 @@ export function Navbar() {
                     </div>
                   </button>
 
+                  {/* Dropdown Menu */}
                   <div className="absolute right-0 top-10 w-48 bg-background border border-default-200 dark:border-default-100 rounded-2xl shadow-2xl hidden group-hover:flex flex-col py-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="px-4 py-2 border-b border-default-100">
                       <p className="text-xs font-semibold text-foreground truncate">
@@ -162,7 +183,11 @@ export function Navbar() {
                     </div>
                     <Link
                       href="/profile"
-                      className="px-4 py-2 text-sm hover:bg-default-100 flex items-center gap-2 transition-colors"
+                      className={`px-4 py-2 text-sm flex items-center gap-2 transition-colors ${
+                        isActive("/profile")
+                          ? "bg-default-100 text-cyan-500 font-semibold"
+                          : "hover:bg-default-100"
+                      }`}
                     >
                       <User className="w-4 h-4" /> Profile Page
                     </Link>
@@ -177,7 +202,7 @@ export function Navbar() {
               ))}
           </div>
 
-          {/* মোবাইল মেনু বাটন */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-1">
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -203,20 +228,24 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* মোবাইল রেসপন্সিভ ড্রয়ার মেনু */}
+      {/* Mobile Drawer Menu */}
       {isMenuOpen && (
         <div className="md:hidden mt-2 mx-auto max-w-7xl px-6 py-4 bg-background border border-default-200 dark:border-default-100 rounded-2xl shadow-xl space-y-2 animate-in slide-in-from-top-2 duration-200">
           <Link
             href="/"
             onClick={() => setIsMenuOpen(false)}
-            className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+            className={`block py-2 text-sm font-semibold transition-colors ${
+              isActive("/") ? "text-cyan-500" : "hover:text-primary"
+            }`}
           >
             Home
           </Link>
           <Link
             href="/tutors"
             onClick={() => setIsMenuOpen(false)}
-            className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+            className={`block py-2 text-sm font-semibold transition-colors ${
+              isActive("/tutors") ? "text-cyan-500" : "hover:text-primary"
+            }`}
           >
             Tutors
           </Link>
@@ -227,21 +256,33 @@ export function Navbar() {
                 <Link
                   href="/add-tutor"
                   onClick={() => setIsMenuOpen(false)}
-                  className="py-2 text-sm font-medium flex items-center gap-2 text-foreground/80"
+                  className={`py-2 text-sm font-semibold flex items-center gap-2 transition-colors ${
+                    isActive("/add-tutor")
+                      ? "text-cyan-500"
+                      : "text-foreground/80"
+                  }`}
                 >
                   <PlusCircle className="w-4 h-4" /> Add Tutor
                 </Link>
                 <Link
                   href="/my-tutors"
                   onClick={() => setIsMenuOpen(false)}
-                  className="py-2 text-sm font-medium flex items-center gap-2 text-foreground/80"
+                  className={`py-2 text-sm font-semibold flex items-center gap-2 transition-colors ${
+                    isActive("/my-tutors")
+                      ? "text-cyan-500"
+                      : "text-foreground/80"
+                  }`}
                 >
                   <Users className="w-4 h-4" /> My Tutors
                 </Link>
                 <Link
                   href="/my-booked-sessions"
                   onClick={() => setIsMenuOpen(false)}
-                  className="py-2 text-sm font-medium flex items-center gap-2 text-foreground/80"
+                  className={`py-2 text-sm font-semibold flex items-center gap-2 transition-colors ${
+                    isActive("/my-booked-sessions")
+                      ? "text-cyan-500"
+                      : "text-foreground/80"
+                  }`}
                 >
                   <Calendar className="w-4 h-4" /> My Booked Sessions
                 </Link>

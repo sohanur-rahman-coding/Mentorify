@@ -13,9 +13,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const AvailableTutors = async () => {
-  const res = await fetch(`http://localhost:5000/tutors`);
+  const res = await fetch(`http://localhost:5000/limited-tutors`);
   const data = await res.json();
-  console.log(data);
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-background">
@@ -107,9 +107,10 @@ const AvailableTutors = async () => {
               </div>
 
               <div className="mt-6">
-                <Button className="w-full font-bold bg-foreground text-background rounded-full py-5 text-sm shadow-md hover:opacity-90 transition-opacity">
-                  Book Session
-                </Button>
+              <Link href={`/tutors/${tutor._id}`}>
+              <Button className="w-full font-bold bg-foreground text-background rounded-full py-5 text-sm shadow-md hover:opacity-90 transition-opacity">
+                Book Session
+              </Button></Link>
               </div>
             </Card>
           ))}

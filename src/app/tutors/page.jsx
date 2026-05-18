@@ -9,11 +9,12 @@ import {
   FaUniversity,
 } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
 
 const TutorsPage = async () => {
   const res = await fetch(`http://localhost:5000/tutors`);
   const data = await res.json();
-  console.log(data);
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-background">
@@ -104,9 +105,10 @@ const TutorsPage = async () => {
             </div>
 
             <div className="mt-6">
+             <Link href={`/tutors/${tutor._id}`}>
               <Button className="w-full font-bold bg-foreground text-background rounded-full py-5 text-sm shadow-md hover:opacity-90 transition-opacity">
                 Book Session
-              </Button>
+              </Button></Link>
             </div>
           </Card>
         ))}

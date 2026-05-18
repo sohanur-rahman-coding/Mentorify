@@ -12,6 +12,12 @@ export const auth = betterAuth({
     emailAndPassword: { 
     enabled: true, 
   }, 
+  socialProviders: {
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
+        }, 
+    },
   plugins:[
     nextCookies()
   ],
@@ -19,4 +25,10 @@ export const auth = betterAuth({
     // Optional: if you don't provide a client, database transactions won't be enabled.
     client
   }),
+  account: {
+		accountLinking: {
+			enabled: true,
+			trustedProviders: ["google", "github"], // Add providers you trust
+		},
+	},
 });

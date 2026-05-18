@@ -11,26 +11,46 @@ import {
   Button,
   Card,
 } from "@heroui/react";
+import { useSession } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 const AddTutor = () => {
+  const { data: session, status } = useSession();
+
   const onSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
-    const Data = Object.fromEntries(formData.entries());
+    const formValues = Object.fromEntries(formData.entries());
 
-    console.log(Data);
+    const tutorData = {
+      ...formValues,
+      createdBy: session?.user?.email,
+    };
 
-    const res = await fetch(`http://localhost:5000/tutors`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(Data),
-    });
+    try {
+      const res = await fetch(`http://localhost:5000/tutors`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(tutorData),
+      });
 
-    const data = await res.json();
-    console.log(data);
-    window.location.reload();
+      const data = await res.json();
+
+      if (data.insertedId) {
+        toast.success("Tutor Added Successfully!");
+        
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error adding tutor:", error);
+    }
   };
+
+  if (status === "loading") {
+    return <div className="text-center my-10">Loading session...</div>;
+  }
 
   return (
     <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100 dark:bg-zinc-950 transition-colors duration-300">

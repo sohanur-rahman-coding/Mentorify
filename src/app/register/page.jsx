@@ -13,15 +13,14 @@ import {
 import { useState } from "react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
-
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
-import { Router } from "next/router";
 import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -34,12 +33,11 @@ const RegisterPage = () => {
       image: UserData.image,
       callbackURL: "/login",
     });
-    console.log(data, error);
 
     if (error) {
-      toast.error("Login failed: " + error.message);
+      toast.error("Registration failed: " + error.message);
     } else {
-      toast.success("Successfully signed in !");
+      toast.success("Successfully registered!");
       router.push("/");
     }
   };
@@ -51,17 +49,28 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="animate__animated animate__fadeInDown min-h-screen flex items-center justify-center bg-linear-to-br from-slate-100 to-slate-200 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-center mb-2">Create Account</h2>
-        <p className="text-sm text-gray-500 text-center mb-6">
-          Sign up to get started
-        </p>
+    <div className="min-h-screen w-full flex items-center justify-center bg-background px-4 sm:px-6 lg:px-8 antialiased">
+      <div className="w-full max-w-[460px] bg-content1 border border-default-200 dark:border-default-100 rounded-[2.5rem] shadow-xl p-6 sm:p-10 md:p-12 transition-all duration-300">
+        
+        {/* Header */}
+        <div className="text-center mb-8 select-none">
+          <span className="text-[10px] uppercase tracking-[0.2em] font-extrabold text-cyan-500 bg-cyan-500/10 px-3 py-1 rounded-full">
+            Join Platform
+          </span>
+          <h2 className="text-3xl font-black tracking-tight text-foreground mt-4 mb-1.5">
+            Create Account
+          </h2>
+          <p className="text-xs sm:text-sm text-foreground/50 font-medium">
+            Sign up to get started with Mentorify
+          </p>
+        </div>
 
+        {/* Form */}
         <Form className="flex flex-col gap-5" onSubmit={onSubmit}>
-          {/* Name */}
+          
+          {/* Name Field */}
           <TextField
+            className="w-full group"
             isRequired
             name="name"
             validate={(value) => {
@@ -69,57 +78,91 @@ const RegisterPage = () => {
               return null;
             }}
           >
-            <Label>Name</Label>
-            <Input placeholder="Your Name" />
-            <FieldError />
+            <Label className="text-xs font-bold uppercase tracking-widest text-foreground/60 mb-2 block transition-colors group-focus-within:text-cyan-500">
+              Full Name
+            </Label>
+            <Input 
+              placeholder="Your Name" 
+              className="font-medium"
+              variant="flat"
+              radius="xl"
+              size="lg"
+            />
+            <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-          {/* profile link  */}
+          {/* Profile Photo Link */}
           <TextField
+            className="w-full group"
             isRequired
             name="image"
             validate={(value) => {
-              if (value.length < 3) return "Name must be at least 3 characters";
+              if (value.length < 3) return "Link must be a valid URL";
               return null;
             }}
           >
-            <Label>Profile Photo link</Label>
-            <Input placeholder="Your DP link" />
-            <FieldError />
+            <Label className="text-xs font-bold uppercase tracking-widest text-foreground/60 mb-2 block transition-colors group-focus-within:text-cyan-500">
+              Profile Photo Link
+            </Label>
+            <Input 
+              placeholder="Your DP link" 
+              className="font-medium"
+              variant="flat"
+              radius="xl"
+              size="lg"
+            />
+            <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-          {/* Email */}
+          {/* Email Field */}
           <TextField
+            className="w-full group"
             isRequired
             name="email"
             type="email"
             validate={(value) => {
               if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                return "Enter a valid email";
+                return "Enter a valid email address";
               }
               return null;
             }}
           >
-            <Label>Email</Label>
-            <Input placeholder="name@example.com" />
-            <FieldError />
+            <Label className="text-xs font-bold uppercase tracking-widest text-foreground/60 mb-2 block transition-colors group-focus-within:text-cyan-500">
+              Email Address
+            </Label>
+            <Input 
+              placeholder="name@example.com" 
+              className="font-medium"
+              variant="flat"
+              radius="xl"
+              size="lg"
+            />
+            <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-          {/* Password */}
-          <TextField name="password" isRequired>
-            <Label>Password</Label>
+          {/* Password Field */}
+          <TextField name="password" isRequired className="w-full group">
+            <Label className="text-xs font-bold uppercase tracking-widest text-foreground/60 mb-2 block transition-colors group-focus-within:text-cyan-500">
+              Password
+            </Label>
             <InputGroup>
               <InputGroup.Input
                 type={isVisible ? "text" : "password"}
                 name="password"
-                placeholder="Enter your password"
+                placeholder="••••••••"
+                className="font-medium"
+                variant="flat"
+                radius="xl"
+                size="lg"
               />
               <InputGroup.Suffix>
                 <Button
                   isIconOnly
+                  variant="light"
+                  radius="full"
                   size="sm"
-                  variant="ghost"
                   onPress={() => setIsVisible(!isVisible)}
+                  className="text-foreground/40 hover:text-foreground transition-colors mr-1"
                 >
                   {isVisible ? (
                     <Eye className="size-4" />
@@ -131,30 +174,43 @@ const RegisterPage = () => {
             </InputGroup>
           </TextField>
 
-          {/* Submit */}
-          <Button type="submit" className="w-full bg-black text-white">
-            <Check className="mr-1" />
+          {/* Register Button */}
+          <Button 
+            type="submit" 
+            className="w-full bg-foreground text-background font-bold h-12 rounded-xl shadow-md hover:opacity-95 active:scale-[0.99] transition-all mt-2 tracking-wide text-sm"
+          >
+            <Check className="w-4 h-4 mr-1.5 stroke-[2.5]" />
             Register
           </Button>
-          <div className="flex items-center my-1">
-            <div className="flex-grow border-t border-gray-300"></div>
-            <span className="flex-shrink mx-4 text-gray-500 font-medium text-sm">
+
+          {/* Divider */}
+          <div className="flex items-center my-1 select-none">
+            <div className="flex-grow border-t border-default-200/80 dark:border-default-100/30"></div>
+            <span className="flex-shrink mx-4 text-foreground/30 font-extrabold text-[10px] tracking-[0.2em]">
               OR
             </span>
-            <div className="flex-grow border-t border-gray-300"></div>
+            <div className="flex-grow border-t border-default-200/80 dark:border-default-100/30"></div>
           </div>
-          <button
-            className="btn btn-outline rounded-4xl flex items-center justify-center gap-2"
-            onClick={signIn}
-          >
-            <FcGoogle />
-            login with Google{" "}
-          </button>
 
-          {/* Login redirect */}
-          <p className="text-center text-sm text-gray-500">
+          {/* Responsive Google Button */}
+          <div className="flex justify-center w-full">
+            <Button
+              variant="bordered"
+              className="w-full sm:w-2/3 h-11 border-default-200 dark:border-default-100/80 rounded-xl font-bold text-foreground bg-transparent hover:bg-default-100 dark:hover:bg-default-50 transition-all text-xs sm:text-sm"
+              onClick={signIn}
+            >
+              <FcGoogle className="text-lg" />
+              Continue with Google
+            </Button>
+          </div>
+
+          {/* Login Redirect */}
+          <p className="text-center text-sm text-foreground/40 font-medium mt-4">
             Already have an account?{" "}
-            <Link href="/login" className="text-blue-600 hover:underline">
+            <Link
+              href="/login"
+              className="text-cyan-500 hover:text-cyan-600 dark:text-cyan-400 dark:hover:text-cyan-300 font-bold transition-colors underline-offset-4 hover:underline"
+            >
               Login
             </Link>
           </p>
