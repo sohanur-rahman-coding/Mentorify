@@ -22,10 +22,8 @@ const TutorsPage = async () => {
           Elite pool
         </span>
         <h1 className="text-3xl sm:text-5xl font-black text-foreground mt-4">
-          Explore All{" "}
-          <span className="text-black">
-            Verified Tutors
-          </span>
+          Explore All Verified Tutors
+         
         </h1>
         <p className="mt-3 text-sm sm:text-base text-foreground/50 max-w-xl mx-auto font-medium">
           Connect with verified university alumni and industry experts tailored
