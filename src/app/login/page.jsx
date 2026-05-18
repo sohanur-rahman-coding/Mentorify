@@ -1,4 +1,5 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
@@ -12,8 +13,9 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
+;
 
 const Login = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +28,7 @@ const Login = () => {
     const { data, error } = await authClient.signIn.email({
       email: UserData.email,
       password: UserData.password,
-      callbackURL: "/",
+      // callbackURL: "/",
     });
 
     if (error) {
@@ -118,7 +120,7 @@ const Login = () => {
           <p className="text-center text-sm text-gray-500">
             Dont have an account?{" "}
             <Link
-              href="/auth/register"
+              href="/register"
               className="text-blue-600 hover:underline"
             >
               Register

@@ -3,7 +3,8 @@ import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { NextThemeProvider } from "@/providers/NextThemeProvider";
 import { Footer } from "./components/Footer";
-import { ToastContainer } from "react-toastify";
+
+import { Toaster } from "react-hot-toast";
 
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -37,7 +38,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <Footer />
-          <ToastContainer />
+          <Toaster/>
         </NextThemeProvider>
       </body>
     </html>

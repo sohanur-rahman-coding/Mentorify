@@ -1,4 +1,5 @@
 "use client";
+
 import { Check, Eye, EyeSlash } from "@gravity-ui/icons";
 import {
   Button,
@@ -16,6 +17,7 @@ import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
 import { Router } from "next/router";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,14 +32,15 @@ const RegisterPage = () => {
       email: UserData.email,
       password: UserData.password,
       image: UserData.image,
-      callbackURL: "/auth/login",
+      callbackURL: "/login",
     });
+    console.log(data, error);
 
     if (error) {
       toast.error("Login failed: " + error.message);
     } else {
       toast.success("Successfully signed in !");
-      Router.push("/");
+      router.push("/");
     }
   };
 
@@ -140,7 +143,10 @@ const RegisterPage = () => {
             </span>
             <div className="flex-grow border-t border-gray-300"></div>
           </div>
-          <button className="btn btn-outline rounded-4xl flex items-center justify-center gap-2" onClick={signIn}>
+          <button
+            className="btn btn-outline rounded-4xl flex items-center justify-center gap-2"
+            onClick={signIn}
+          >
             <FcGoogle />
             login with Google{" "}
           </button>
@@ -148,7 +154,7 @@ const RegisterPage = () => {
           {/* Login redirect */}
           <p className="text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-blue-600 hover:underline">
+            <Link href="/login" className="text-blue-600 hover:underline">
               Login
             </Link>
           </p>
