@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 import TutorEditModal from "./TutorEditModal";
+import DeleteAlert from "./DeleteAlert";
 
 const MyTutorsTable = ({MyTutors}) => {
   const handleDelete = (id) => {
@@ -106,7 +107,7 @@ const MyTutorsTable = ({MyTutors}) => {
                         className="text-red-500 hover:text-red-700 transition-colors text-lg cursor-pointer"
                         title="Delete"
                       >
-                       <RiDeleteBinLine/>
+                       <DeleteAlert tutor={tutor} handleDelete={handleDelete}> <RiDeleteBinLine/></DeleteAlert>
                       </button>
                       {/* Edit button (Green Icon) */}
                       <button
@@ -114,7 +115,7 @@ const MyTutorsTable = ({MyTutors}) => {
                         title="Edit"
                       >
                         
-                        <TutorEditModal tutor={tutor}></TutorEditModal>
+                        <TutorEditModal tutor={tutor} ></TutorEditModal>
                       </button>
                     </td>
                   </tr>
