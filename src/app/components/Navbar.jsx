@@ -20,6 +20,7 @@ import { useTheme } from "next-themes";
 import { useRouter, usePathname } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export function Navbar() {
   const router = useRouter();
@@ -42,7 +43,8 @@ export function Navbar() {
         },
       });
     } catch (error) {
-      console.error(error);
+      toast.error("Failed to log out. Please try again.");
+     
     }
   };
 

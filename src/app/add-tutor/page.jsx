@@ -7,12 +7,12 @@ import {
   TextField,
   Select,
   ListBox,
-  TextArea,
   Button,
   Card,
 } from "@heroui/react";
 import { useSession } from "@/lib/auth-client";
 import toast from "react-hot-toast";
+
 const AddTutor = () => {
   const { data: session, status } = useSession();
 
@@ -40,11 +40,10 @@ const AddTutor = () => {
 
       if (data.insertedId) {
         toast.success("Tutor Added Successfully!");
-        
         window.location.reload();
       }
     } catch (error) {
-      console.error("Error adding tutor:", error);
+      toast.error("Error adding tutor.");
     }
   };
 
@@ -58,7 +57,6 @@ const AddTutor = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Add a New Tutor</h2>
         <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Tutor Name */}
             <div className="md:col-span-2">
               <TextField name="tutorName" isRequired>
                 <Label>Tutor Name</Label>
@@ -67,7 +65,6 @@ const AddTutor = () => {
               </TextField>
             </div>
 
-            {/* Photo URL */}
             <div className="md:col-span-2">
               <TextField name="photo" type="url" isRequired>
                 <Label>Photo URL </Label>
@@ -79,7 +76,6 @@ const AddTutor = () => {
               </TextField>
             </div>
 
-            {/* Subject / Category Dropdown */}
             <div>
               <Select
                 name="category"
@@ -126,7 +122,6 @@ const AddTutor = () => {
               </Select>
             </div>
 
-            {/* Available Days and Time Slot */}
             <TextField name="availableSlots" isRequired>
               <Label>Available Days & Time Slot</Label>
               <Input
@@ -136,7 +131,6 @@ const AddTutor = () => {
               <FieldError />
             </TextField>
 
-            {/* Hourly Fee */}
             <TextField name="hourlyFee" type="number" isRequired>
               <Label>Hourly Fee</Label>
               <Input
@@ -147,7 +141,6 @@ const AddTutor = () => {
               <FieldError />
             </TextField>
 
-            {/* Total Slot */}
             <TextField name="totalSlot" type="number" isRequired>
               <Label>Total Slot</Label>
               <Input
@@ -158,7 +151,6 @@ const AddTutor = () => {
               <FieldError />
             </TextField>
 
-            {/* Session Start Date */}
             <div className="md:col-span-2">
               <TextField name="sessionStartDate" type="date" isRequired>
                 <Label>Session Start Date</Label>
@@ -167,19 +159,17 @@ const AddTutor = () => {
               </TextField>
             </div>
 
-            {/* Institution & Experience */}
             <div className="md:col-span-2">
-              <TextField name="institutionExperience" isRequired>
-                <Label>Institution & Experience</Label>
+              <TextField name="institution" isRequired>
+                <Label>Institution</Label>
                 <Input
-                  placeholder="e.g. Dhaka Polytechnic Institute, 2 Years Experience"
+                  placeholder="e.g. Dhaka Polytechnic Institute"
                   className="rounded-2xl"
                 />
                 <FieldError />
               </TextField>
             </div>
 
-            {/* Location */}
             <div>
               <TextField name="location" isRequired>
                 <Label>Location (Area/City)</Label>
@@ -191,7 +181,6 @@ const AddTutor = () => {
               </TextField>
             </div>
 
-            {/* Teaching Mode Dropdown */}
             <div>
               <Select
                 name="teachingMode"
@@ -222,9 +211,19 @@ const AddTutor = () => {
                 </Select.Popover>
               </Select>
             </div>
+
+            <div className="md:col-span-2">
+              <TextField name="experience" isRequired>
+                <Label>Experience</Label>
+                <Input
+                  placeholder="e.g. 2 Years Experience"
+                  className="rounded-2xl"
+                />
+                <FieldError />
+              </TextField>
+            </div>
           </div>
 
-          {/* Submit Button */}
           <Button
             type="submit"
             variant="outline"

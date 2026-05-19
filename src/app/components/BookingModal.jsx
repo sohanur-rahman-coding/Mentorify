@@ -15,7 +15,7 @@ const BookingModal = ({ tutorName, hourlyFee }) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data, "form data");
+  
     const res = await fetch("http://localhost:5000/my-booked-sessions", {
       method: "POST",
       headers: {
@@ -24,7 +24,7 @@ const BookingModal = ({ tutorName, hourlyFee }) => {
       body: JSON.stringify(data),
     });
     const result = await res.json();
-    console.log(result, "result");
+    
   };
 
   const { data: sessionData, isPending } = authClient.useSession();

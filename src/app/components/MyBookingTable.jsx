@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { FiTrash2 } from "react-icons/fi";
 
 const MyBookingTable = ({ bookings = [] }) => {
-  console.log(bookings);
+
 
   const handleCancel = async (id) => {
     const res = await fetch(`http://localhost:5000/my-booked-sessions/${id}`, {

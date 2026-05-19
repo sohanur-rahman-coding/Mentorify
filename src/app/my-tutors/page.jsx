@@ -15,10 +15,12 @@ const MyTutor = async () => {
     `http://localhost:5000/my-tutors?email=${user?.email}`,
   );
   const MyTutors = await res.json();
-  console.log(MyTutors, "MyTutors");
-  return <div>
-    <MyTutorsTable MyTutors={MyTutors} />
-  </div>;
+
+  return (
+    <div>
+      <MyTutorsTable MyTutors={MyTutors} />
+    </div>
+  );
 };
 
 export default MyTutor;

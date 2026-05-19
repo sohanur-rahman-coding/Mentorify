@@ -5,6 +5,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
+import TutorEditModal from "./TutorEditModal";
 
 const MyTutorsTable = ({MyTutors}) => {
   const handleDelete = (id) => {
@@ -18,7 +19,7 @@ const MyTutorsTable = ({MyTutors}) => {
         }
       })
       .catch((error) => {
-        console.error("Error deleting tutor:", error);
+ 
         toast.error("Failed to delete tutor. Please try again.");
       });
   };
@@ -112,7 +113,8 @@ const MyTutorsTable = ({MyTutors}) => {
                         className="text-emerald-500 hover:text-emerald-700 transition-colors text-lg cursor-pointer"
                         title="Edit"
                       >
-                        <FaRegEdit />
+                        
+                        <TutorEditModal tutor={tutor}></TutorEditModal>
                       </button>
                     </td>
                   </tr>
