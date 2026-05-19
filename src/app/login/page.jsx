@@ -11,12 +11,16 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 
   const onSubmit = async (e) => {
@@ -33,6 +37,8 @@ const Login = () => {
       toast.error("Login failed: " + error.message);
     } else {
       toast.success("Successfully signed in !");
+      router.push("/");
+      
     }
   };
 

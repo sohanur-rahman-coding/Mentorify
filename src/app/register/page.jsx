@@ -26,9 +26,12 @@ const RegisterPage = () => {
     const formData = new FormData(e.currentTarget);
     const UserData = Object.fromEntries(formData.entries());
 
-    // পাসওয়ার্ড ভ্যালিডেশন চেক (যদি কোনো কারণে এইচটিএমএল ভ্যালিডেশন বাইপাস হয়)
     const password = UserData.password;
-    if (password.length < 6 || !/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
+    if (
+      password.length < 6 ||
+      !/[A-Z]/.test(password) ||
+      !/[a-z]/.test(password)
+    ) {
       toast.error("Invalid password criteria");
       return;
     }
@@ -45,8 +48,7 @@ const RegisterPage = () => {
       toast.error("Registration failed: " + error.message);
     } else {
       toast.success("Successfully registered!");
-      router.push("/login"); // রিকোয়ারমেন্ট অনুযায়ী সফল হলে লগইন পেজে নেভিগেট করবে
-    }
+      router.push("/login");
   };
 
   const signIn = async () => {
@@ -96,7 +98,6 @@ const RegisterPage = () => {
             <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-          
           <TextField
             className="w-full group"
             isRequired
@@ -119,7 +120,6 @@ const RegisterPage = () => {
             <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-         
           <TextField
             className="w-full group"
             isRequired
@@ -145,13 +145,13 @@ const RegisterPage = () => {
             <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-         
-          <TextField 
-            name="password" 
-            isRequired 
+          <TextField
+            name="password"
+            isRequired
             className="w-full group"
             validate={(value) => {
-              if (value.length < 6) return "Length must be at least 6 characters";
+              if (value.length < 6)
+                return "Length must be at least 6 characters";
               if (!/[A-Z]/.test(value)) return "Must have an Uppercase letter";
               if (!/[a-z]/.test(value)) return "Must have a Lowercase letter";
               return null;
@@ -190,7 +190,6 @@ const RegisterPage = () => {
             <FieldError className="text-xs font-semibold text-danger mt-1.5" />
           </TextField>
 
-         
           <Button
             type="submit"
             className="w-full bg-foreground text-background font-bold h-12 rounded-xl shadow-md hover:opacity-95 active:scale-[0.99] transition-all mt-2 tracking-wide text-sm"

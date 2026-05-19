@@ -25,7 +25,9 @@ const MyBookingTable = ({ bookings = [] }) => {
 
   return (
     <div>
-      <Table aria-label="Booking sessions table">
+      {bookings.length === 0 ? (
+        <p className="text-center text-gray-500 mt-10">No bookings found.</p>
+      ) : (<Table aria-label="Booking sessions table">
         <Table.ResizableContainer>
           <Table.Content
             aria-label="Table with resizable columns"
@@ -107,7 +109,7 @@ const MyBookingTable = ({ bookings = [] }) => {
             </Table.Body>
           </Table.Content>
         </Table.ResizableContainer>
-      </Table>
+      </Table>)}  
     </div>
   );
 };

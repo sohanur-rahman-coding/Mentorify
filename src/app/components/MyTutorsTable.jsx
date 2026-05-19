@@ -2,10 +2,26 @@
 import { Card } from "@heroui/react";
 import Image from "next/image";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 const MyTutorsTable = ({MyTutors}) => {
+  const handleDelete = (id) => {
+    const res = fetch(`http://localhost:5000/tutors/${id}`, {
+      method: "DELETE",
+    }).then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Tutor deleted successfully");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting tutor:", error);
+        toast.error("Failed to delete tutor. Please try again.");
+      });
+  };
   return (
     <div>
       <div className="max-w-7xl mx-auto my-10 p-4">
