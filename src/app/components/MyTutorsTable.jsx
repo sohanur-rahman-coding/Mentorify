@@ -98,13 +98,13 @@ const MyTutorsTable = ({ MyTutors }) => {
 
                     {/* Session Start Date */}
                     <td className="py-4 px-4 text-zinc-500 dark:text-zinc-400 text-xs">
-                      {tutor.sessionStartDate || "N/A"}
+                      {tutor.startDate || "N/A"}
                     </td>
 
                     {/* Actions (Delete and Edit) */}
                     <td className="py-4 px-4 text-center grid grid-cols-1 gap-1 justify-center items-center lg:flex lg:space-x-1 lg:space-y-0">
                       {/* Delete button (Red Icon) */}
-                      <button
+                      <div
                         onClick={() => handleDelete(tutor._id)}
                         className="text-red-500 hover:text-red-700 transition-colors text-lg cursor-pointer"
                         title="Delete"
@@ -113,14 +113,14 @@ const MyTutorsTable = ({ MyTutors }) => {
                           {" "}
                           <RiDeleteBinLine />
                         </DeleteAlert>
-                      </button>
+                      </div>
                       {/* Edit button (Green Icon) */}
-                      <button
+                      <div
                         className="text-emerald-500 hover:text-emerald-700 transition-colors text-lg cursor-pointer"
                         title="Edit"
                       >
                         <TutorEditModal tutor={tutor}></TutorEditModal>
-                      </button>
+                      </div>
                     </td>
                   </tr>
                 ))

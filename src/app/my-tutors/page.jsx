@@ -20,12 +20,11 @@ const MyTutor = async () => {
   });
   const token = tokenData?.token;
 
-  const baseUrl = process.env.SERVER_URL || process.env.NEXT_PUBLIC_SERVER_URL;
+  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const res = await fetch(`${baseUrl}/my-tutors?email=${user.email}`, {
     headers: {
       "Content-Type": "application/json",
-
       authorization: `Bearer ${token}`,
     },
   });

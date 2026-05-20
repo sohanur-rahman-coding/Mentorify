@@ -1,29 +1,38 @@
 "use client";
 
 import { Button, Input, Modal } from "@heroui/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
 import { FaRegEdit } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 import { HiCheckCircle } from "react-icons/hi";
 
 const TutorEditModal = ({ tutor }) => {
+  console.log(tutor, "tutor");
+  const router = useRouter();
   const submitData = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const formValues = Object.fromEntries(formData.entries());
-  
 
-    const res = await fetch(`${process.env.SERVER_URL}/tutors/${tutor._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-       
-      
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${tutor._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formValues),
       },
-      body: JSON.stringify(formValues),
-    });
+    );
     const data = await res.json();
-
-    window.location.reload();
+    if (data.modifiedCount > 0) {
+      toast.success("Tutor updated successfully");
+      router.refresh();
+    } else {
+      toast.error("Failed to update tutor. Please try again.");
+    }
   };
   return (
     <div className="antialiased">
@@ -89,25 +98,29 @@ const TutorEditModal = ({ tutor }) => {
                         Subject
                       </label>
                       <select
-                        name="subject"
-                        defaultValue={tutor?.subject || "Physics"}
+                        name="category"
+                        defaultValue={tutor?.category}
                         className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-950 outline-none transition-all focus:border-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                       >
                         <option value="Physics">Physics</option>
                         <option value="Chemistry">Chemistry</option>
                         <option value="Math">Mathematics</option>
                         <option value="Biology">Biology</option>
+                        <option value="English">English</option>
+                        <option value="Programming & Tech">
+                          Programming & Tech
+                        </option>
                       </select>
                     </div>
 
                     {/* Available Days and Time */}
                     <div>
                       <label className="mb-1.5 block text-xs font-bold text-zinc-800 dark:text-zinc-300">
-                        Available Days and Time
+                        Available Slot
                       </label>
                       <Input
-                        name="availableDays"
-                        defaultValue={tutor?.availableSlots || ""}
+                        name="availableSlots"
+                        defaultValue={tutor?.availableSlots}
                         className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-950 outline-none transition-all focus:border-zinc-950 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                       />
                     </div>
