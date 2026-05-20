@@ -49,6 +49,7 @@ const RegisterPage = () => {
     } else {
       toast.success("Successfully registered!");
       router.push("/login");
+    }
   };
 
   const signIn = async () => {
@@ -59,8 +60,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen w-full my-4 flex items-center justify-center bg-background px-4 sm:px-6 lg:px-8 antialiased">
-      <div className="w-full max-w-[460px] bg-content1 border border-default-200 dark:border-default-100 rounded-[2.5rem] shadow-xl p-6 sm:p-10  transition-all duration-300">
-        {/* Header */}
+      <div className="w-full max-w-[460px] bg-content1 border border-default-200 dark:border-default-100 rounded-[2.5rem] shadow-xl p-6 sm:p-10 transition-all duration-300">
         <div className="text-center mb-4 select-none">
           <span className="text-[10px] uppercase tracking-[0.2em] font-extrabold text-cyan-500 bg-cyan-500/10 px-3 py-1 rounded-full">
             Join Platform
@@ -73,15 +73,14 @@ const RegisterPage = () => {
           </p>
         </div>
 
-        {/* Form */}
         <Form className="flex flex-col gap-5" onSubmit={onSubmit}>
-          {/* Name Field */}
           <TextField
             className="w-full group"
             isRequired
             name="name"
             validate={(value) => {
-              if (value.length < 3) return "Name must be at least 3 characters";
+              if (value.length < 3)
+                return "Name must be at least 3 characters";
               return null;
             }}
           >
@@ -152,7 +151,8 @@ const RegisterPage = () => {
             validate={(value) => {
               if (value.length < 6)
                 return "Length must be at least 6 characters";
-              if (!/[A-Z]/.test(value)) return "Must have an Uppercase letter";
+              if (!/[A-Z]/.test(value))
+                return "Must have an Uppercase letter";
               if (!/[a-z]/.test(value)) return "Must have a Lowercase letter";
               return null;
             }}
@@ -198,8 +198,7 @@ const RegisterPage = () => {
             Register
           </Button>
 
-          {/* Divider */}
-          <div className="flex items-center  select-none">
+          <div className="flex items-center select-none">
             <div className="flex-grow border-t border-default-200/80 dark:border-default-100/30"></div>
             <span className="flex-shrink mx-4 text-foreground/30 font-extrabold text-[10px] tracking-[0.2em]">
               OR
@@ -207,7 +206,6 @@ const RegisterPage = () => {
             <div className="flex-grow border-t border-default-200/80 dark:border-default-100/30"></div>
           </div>
 
-          {/* Google Button */}
           <div className="flex justify-center w-full">
             <Button
               type="button"
@@ -220,7 +218,6 @@ const RegisterPage = () => {
             </Button>
           </div>
 
-          {/* Login Redirect */}
           <p className="text-center text-sm text-foreground/40 font-medium ">
             Already have an account?{" "}
             <Link

@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const TutorsPage = async () => {
-  const res = await fetch(`http://localhost:5000/tutors`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`);
   const data = await res.json();
 
 

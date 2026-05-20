@@ -13,7 +13,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
 const AvailableTutors = async () => {
-  const res = await fetch(`http://localhost:5000/limited-tutors`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/limited-tutors`);
   const data = await res.json();
 
 

@@ -10,11 +10,14 @@ const TutorEditModal = ({ tutor }) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const formValues = Object.fromEntries(formData.entries());
+  
 
-    const res = await fetch(`http://localhost:5000/tutors/${tutor._id}`, {
+    const res = await fetch(`${process.env.SERVER_URL}/tutors/${tutor._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+       
+      
       },
       body: JSON.stringify(formValues),
     });

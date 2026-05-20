@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Card } from "@heroui/react";
 import Image from "next/image";
 import React from "react";
@@ -8,11 +8,12 @@ import { RiDeleteBinLine } from "react-icons/ri";
 import TutorEditModal from "./TutorEditModal";
 import DeleteAlert from "./DeleteAlert";
 
-const MyTutorsTable = ({MyTutors}) => {
-  const handleDelete = (id) => {
-    const res = fetch(`http://localhost:5000/tutors/${id}`, {
+const MyTutorsTable = ({ MyTutors }) => {
+  const handleDelete = async (id) => {
+    const res = fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`, {
       method: "DELETE",
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
           toast.success("Tutor deleted successfully");
@@ -20,7 +21,6 @@ const MyTutorsTable = ({MyTutors}) => {
         }
       })
       .catch((error) => {
- 
         toast.error("Failed to delete tutor. Please try again.");
       });
   };
@@ -42,7 +42,9 @@ const MyTutorsTable = ({MyTutors}) => {
                 <th className="py-4 px-4">Hourly Fee</th>
                 <th className="py-4 px-4">Total Slot</th>
                 <th className="py-4 px-4">Registration Date</th>
-                <th className="py-4 px-4 text-right">Action</th>
+                <th className="py-4 px-4 text-right flex justify-center items-center">
+                  Action
+                </th>
               </tr>
             </thead>
 
@@ -100,22 +102,24 @@ const MyTutorsTable = ({MyTutors}) => {
                     </td>
 
                     {/* Actions (Delete and Edit) */}
-                    <td className="py-4 px-4 text-right space-x-3">
+                    <td className="py-4 px-4 text-center grid grid-cols-1 gap-1 justify-center items-center lg:flex lg:space-x-1 lg:space-y-0">
                       {/* Delete button (Red Icon) */}
                       <button
                         onClick={() => handleDelete(tutor._id)}
                         className="text-red-500 hover:text-red-700 transition-colors text-lg cursor-pointer"
                         title="Delete"
                       >
-                       <DeleteAlert tutor={tutor} handleDelete={handleDelete}> <RiDeleteBinLine/></DeleteAlert>
+                        <DeleteAlert tutor={tutor} handleDelete={handleDelete}>
+                          {" "}
+                          <RiDeleteBinLine />
+                        </DeleteAlert>
                       </button>
                       {/* Edit button (Green Icon) */}
                       <button
                         className="text-emerald-500 hover:text-emerald-700 transition-colors text-lg cursor-pointer"
                         title="Edit"
                       >
-                        
-                        <TutorEditModal tutor={tutor} ></TutorEditModal>
+                        <TutorEditModal tutor={tutor}></TutorEditModal>
                       </button>
                     </td>
                   </tr>

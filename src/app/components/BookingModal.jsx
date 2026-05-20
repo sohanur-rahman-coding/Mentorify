@@ -9,26 +9,64 @@ import {
   HiCheckCircle,
 } from "react-icons/hi2";
 import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
-const BookingModal = ({ tutorName, hourlyFee }) => {
-  const submitData = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-  
-    const res = await fetch("http://localhost:5000/my-booked-sessions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await res.json();
-    
-  };
-
+const BookingModal = ({ tutorName, hourlyFee,_id }) => {
   const { data: sessionData, isPending } = authClient.useSession();
   const user = sessionData?.user;
+  const submitData = async (e) => {
+    e.preventDefault();
+
+    if (!user?.email) {
+      toast.error("Please log in first to book a session.");
+      return;
+    }
+
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    const payload = {
+      tutorId:_id,
+      email: user?.email,
+      name: data?.name,
+      phoneNumber: data.phoneNumber,
+      tutorName,
+      hourlyFee: Number(hourlyFee),
+    };
+
+    try {
+      const { data: token } = await authClient.token();
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/my-booked-sessions`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token?.token}`,
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      const result = await res.json();
+
+      if (res.ok) {
+        toast.success("Session booked successfully!");
+        
+      } else {
+        toast.error(
+          "Failed to book session: " + (result.message || "Unknown error"),
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while booking.");
+    } finally {
+      window.location.reload();
+    }
+  };
 
   return (
     <div className="antialiased">

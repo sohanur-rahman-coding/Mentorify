@@ -10,7 +10,7 @@ import {
   Button,
   Card,
 } from "@heroui/react";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const AddTutor = () => {
@@ -26,23 +26,29 @@ const AddTutor = () => {
       ...formValues,
       createdBy: session?.user?.email,
     };
+    const { data: token } = await authClient.token();
 
     try {
-      const res = await fetch(`http://localhost:5000/tutors`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/tutors`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          Authorization: `Bearer ${token?.token}`,
         },
         body: JSON.stringify(tutorData),
       });
 
       const data = await res.json();
-
-      if (data.insertedId) {
+      if (data.insertedId || data.acknowledged) {
         toast.success("Tutor Added Successfully!");
-        window.location.reload();
+
+       
+        e.target.reset();
+      } else {
+        toast.error("Failed to add tutor.");
       }
     } catch (error) {
+      console.error(error);
       toast.error("Error adding tutor.");
     }
   };

@@ -4,22 +4,24 @@ import { Chip, Table, Button } from "@heroui/react";
 import toast from "react-hot-toast";
 import { FiTrash2 } from "react-icons/fi";
 import DeleteAlert from "./DeleteAlert";
+import { authClient } from "@/lib/auth-client";
 
 const MyBookingTable = ({ bookings = [] }) => {
+  console.log(bookings,'bookings');
   const handleCancel = async (id) => {
-    const res = await fetch(`http://localhost:5000/my-booked-sessions/${id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-booked-sessions/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    window.location.reload();
 
     if (res.ok) {
       toast.success("Booking cancelled successfully.");
     } else {
       toast.error("Failed to cancel the booking. Please try again.");
     }
+    window.location.reload();
   };
 
   return (
