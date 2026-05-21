@@ -145,6 +145,26 @@ const BookingModal = ({ tutorName, hourlyFee,_id }) => {
                       }}
                     />
                   </div>
+                  <div className="w-full">
+                    <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.15em] text-black dark:text-zinc-400">
+                      Tutor ID
+                    </label>
+                    <Input
+                    defaultValue={_id || "TUTOR-001"} 
+                      name="tutorId"
+                      placeholder="TUTOR-001"
+                      startContent={
+                        <FiUser className="text-base text-black dark:text-zinc-400 flex-shrink-0" />
+                      }
+                      className="w-full"
+                      classNames={{
+                        inputWrapper:
+                          "h-11 rounded-xl border border-zinc-200 bg-zinc-50/50 px-4 transition-all hover:bg-zinc-100/50 focus-within:border-zinc-950 focus-within:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900/50 dark:focus-within:border-white dark:focus-within:bg-zinc-950",
+                        input:
+                          "text-sm text-zinc-950 dark:text-white placeholder:text-zinc-400 font-bold pl-2 bg-transparent w-full",
+                      }}
+                    />
+                  </div>
 
                   <div className="w-full">
                     <label className="mb-1.5 block text-[10px] font-bold uppercase tracking-[0.15em] text-black dark:text-zinc-400">
