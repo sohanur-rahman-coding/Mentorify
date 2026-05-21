@@ -46,15 +46,12 @@ const DateFilter = ({ startDate, endDate }) => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-2">
+    <div className="w-full max-w-7xl mx-auto px-2 animate__animated animate__fadeIn">
       <form
         onSubmit={handleFilter}
         className="w-full bg-content1 pl-4 pr-2 py-2 rounded-full border border-default-200 shadow-sm flex flex-col md:flex-row items-stretch md:items-center gap-3 transition-all duration-300"
       >
-        {/* INPUTS WRAPPER */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2 min-w-0">
-          
-          {/* FROM DATE */}
           <div className="relative flex items-center bg-background border border-default-300 rounded-2xl px-3 transition-all duration-200 focus-within:border-black dark:focus-within:border-white min-w-0">
             <div className="text-default-400 mr-2 flex-shrink-0">
               <Calendar className="h-4 w-4" />
@@ -72,7 +69,6 @@ const DateFilter = ({ startDate, endDate }) => {
             </div>
           </div>
 
-          {/* TO DATE */}
           <div className="relative flex items-center bg-background border border-default-300 rounded-2xl px-3 transition-all duration-200 focus-within:border-black dark:focus-within:border-white min-w-0">
             <div className="text-default-400 mr-2 flex-shrink-0">
               <Calendar className="h-4 w-4" />
@@ -90,10 +86,8 @@ const DateFilter = ({ startDate, endDate }) => {
               />
             </div>
           </div>
-          
         </div>
 
-        {/* ACTIONS CONTAINER */}
         <div className="flex items-center gap-2 flex-shrink-0 justify-end md:justify-start">
           <button
             type="submit"
@@ -114,9 +108,8 @@ const DateFilter = ({ startDate, endDate }) => {
         </div>
       </form>
 
-      {/* ERROR MESSAGE */}
       {isInvalidRange && (
-        <p className="mt-2 ml-5 text-xs font-semibold text-red-500">
+        <p className="mt-2 ml-5 text-xs font-semibold text-red-500 animate__animated animate__headShake">
           End date cannot be earlier than start date.
         </p>
       )}

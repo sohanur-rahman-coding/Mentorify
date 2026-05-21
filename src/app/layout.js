@@ -5,6 +5,7 @@ import { NextThemeProvider } from "@/providers/NextThemeProvider";
 import { Footer } from "./components/Footer";
 
 import { Toaster } from "react-hot-toast";
+import SmoothScroll from "./components/SmoothScroll";
 
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -33,8 +34,10 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col font-sans">
         <NextThemeProvider>
+          <SmoothScroll></SmoothScroll>
           <Navbar />
           <main className="flex-grow">
+            
             {children}
           </main>
           <Footer />

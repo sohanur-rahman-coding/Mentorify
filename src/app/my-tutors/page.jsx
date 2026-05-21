@@ -40,7 +40,7 @@ const MyTutor = async () => {
   const MyTutors = await res.json();
 
   return (
-    <div className="my-8 max-w-7xl mx-auto px-4">
+    <div className="my-8 max-w-7xl mx-auto px-4 animate__animated animate__fadeIn">
       <MyTutorsTable MyTutors={MyTutors} />
     </div>
   );

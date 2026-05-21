@@ -25,15 +25,15 @@ const TutorsPage = async ({ searchParams }) => {
   const data = await res.json();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-background">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-background animate__animated animate__fadeIn">
       <div className="text-center mb-6">
         <span className="text-xs uppercase tracking-widest font-bold text-cyan-500 bg-cyan-500/10 px-2 py-1 rounded-full">
           Elite pool
         </span>
-        <h1 className="text-3xl sm:text-5xl font-black text-foreground mt-4">
+        <h1 className="text-3xl sm:text-5xl font-black text-foreground mt-4 animate__animated animate__fadeInUp">
           Explore All Verified Tutors
         </h1>
-        <p className="mt-3 text-sm sm:text-base text-foreground/50 max-w-xl mx-auto font-medium">
+        <p className="mt-3 text-sm sm:text-base text-foreground/50 max-w-xl mx-auto font-medium animate__animated animate__fadeInUp animate__delay-1s">
           Connect with verified university alumni and industry experts tailored
           to your learning schedule.
         </p>
@@ -49,7 +49,7 @@ const TutorsPage = async ({ searchParams }) => {
       </div>
 
       {!data || data.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 px-4 text-center border border-dashed border-default-200 rounded-3xl bg-content1/50 max-w-2xl mx-auto shadow-sm">
+        <div className="flex flex-col items-center justify-center py-20 px-4 text-center border border-dashed border-default-200 rounded-3xl bg-content1/50 max-w-2xl mx-auto shadow-sm animate__animated animate__zoomIn">
           <div className="text-default-400 mb-4 bg-default-100 p-4 rounded-full">
             <svg
               className="w-12 h-12 mx-auto text-cyan-500"
@@ -77,7 +77,7 @@ const TutorsPage = async ({ searchParams }) => {
           {data.map((tutor) => (
             <Card
               key={tutor._id}
-              className="bg-content1 border border-default-200 dark:border-default-100 rounded-3xl overflow-hidden p-5 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-content1 border border-default-200 dark:border-default-100 rounded-3xl overflow-hidden p-5 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] animate__animated animate__fadeInUp"
             >
               <div>
                 <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-5 bg-default-100">

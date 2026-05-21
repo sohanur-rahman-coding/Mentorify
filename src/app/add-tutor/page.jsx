@@ -58,7 +58,7 @@ const AddTutor = () => {
   }
 
   return (
-    <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100 dark:bg-zinc-950 transition-colors duration-300">
+    <div className="min-h-screen my-8 flex items-center justify-center mx-auto bg-gray-100 dark:bg-zinc-950 transition-colors duration-300 animate__animated animate__fadeIn">
       <Card className="p-6 mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-center">Add a New Tutor</h2>
         <form onSubmit={onSubmit} className="p-10 space-y-8 w-3xl mx-auto">

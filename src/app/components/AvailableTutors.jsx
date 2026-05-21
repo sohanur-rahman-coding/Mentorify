@@ -16,9 +16,8 @@ const AvailableTutors = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/limited-tutors`);
   const data = await res.json();
 
-
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-background">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-background animate-fadeIn">
       <div className="mb-12 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
           Available Verified Tutors
@@ -29,7 +28,7 @@ const AvailableTutors = async () => {
       </div>
 
       {data.length === 0 ? (
-        <div className="text-center py-12 text-foreground/50 border border-dashed border-default-200 rounded-3xl">
+        <div className="text-center py-12 text-foreground/50 border border-dashed border-default-200 rounded-3xl animate-pulse">
           No active tutor slots available at the moment.
         </div>
       ) : (
@@ -37,7 +36,7 @@ const AvailableTutors = async () => {
           {data.map((tutor) => (
             <Card
               key={tutor._id}
-              className="bg-content1 border border-default-200 dark:border-default-100 rounded-3xl overflow-hidden p-5 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-content1 border border-default-200 dark:border-default-100 rounded-3xl overflow-hidden p-5 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
             >
               <div>
                 <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-5 bg-default-100">
@@ -107,10 +106,11 @@ const AvailableTutors = async () => {
               </div>
 
               <div className="mt-6">
-              <Link href={`/tutors/${tutor._id}`}>
-              <Button className="w-full font-bold bg-foreground text-background rounded-full py-5 text-sm shadow-md hover:opacity-90 transition-opacity">
-                Book Session
-              </Button></Link>
+                <Link href={`/tutors/${tutor._id}`}>
+                  <Button className="w-full font-bold bg-foreground text-background rounded-full py-5 text-sm shadow-md hover:opacity-90 transition-opacity">
+                    Book Session
+                  </Button>
+                </Link>
               </div>
             </Card>
           ))}

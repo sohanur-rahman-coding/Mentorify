@@ -26,7 +26,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSearch}
-      className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-black transition-all overflow-hidden"
+      className="relative animate__animated animate__fadeIn flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-black transition-all overflow-hidden"
     >
       <div className="pl-5 text-slate-400">
         <Search className="w-5 h-5" />

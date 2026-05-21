@@ -59,7 +59,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full my-4 flex items-center justify-center bg-background px-4 sm:px-6 lg:px-8 antialiased">
+    <div className="min-h-screen w-full my-4 flex items-center justify-center bg-background px-4 sm:px-6 lg:px-8 antialiased animate__animated animate__fadeIn">
       <div className="w-full max-w-[460px] bg-content1 border border-default-200 dark:border-default-100 rounded-[2.5rem] shadow-xl p-6 sm:p-10 transition-all duration-300">
         <div className="text-center mb-4 select-none">
           <span className="text-[10px] uppercase tracking-[0.2em] font-extrabold text-cyan-500 bg-cyan-500/10 px-3 py-1 rounded-full">

@@ -35,7 +35,7 @@ const TutorDetailsPage = async ({ params }) => {
 
   if (!response.ok) {
     return (
-      <div className="flex min-h-[55vh] items-center justify-center px-4">
+      <div className="flex min-h-[55vh] items-center justify-center px-4 animate__animated animate__fadeIn">
         <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/70 px-8 py-7 backdrop-blur-xl shadow-lg">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-red-500">
             Failed to fetch tutor details
