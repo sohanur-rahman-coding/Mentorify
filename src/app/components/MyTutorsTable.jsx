@@ -86,7 +86,7 @@ const MyTutorsTable = ({ MyTutors }) => {
 
                     {/* Hourly Fee */}
                     <td className="py-4 px-4 text-zinc-700 dark:text-zinc-300">
-                      ৳{tutor.hourlyFee}
+                      ${tutor.hourlyFee}
                     </td>
 
                     {/* Total Slot with Badge Styling */}
