@@ -43,7 +43,7 @@ const TutorsPage = async ({ searchParams }) => {
         <div className="w-full max-w-md">
           <SearchBar />
         </div>
-        <div className="w-full max-w-md">
+        <div className="w-full ">
           <DateFilter startDate={startDate} />
         </div>
       </div>
