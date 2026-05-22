@@ -39,7 +39,7 @@ export function Navbar() {
       await authClient.signOut({
         onSuccess: () => {
           router.push("/login");
-          toast.warning("Sign Out Successful");
+          toast.success("Sign Out Successful");
           router.refresh();
         },
       });
