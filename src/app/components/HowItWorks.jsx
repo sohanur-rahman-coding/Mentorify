@@ -48,7 +48,7 @@ const HowItWorks = () => {
         <h2 className="text-3xl font-black tracking-tight text-foreground sm:text-5xl mt-4">
           How{" "}
           <span className="bg-gradient-to-r bg-clip-text text-transparent from-cyan-400 via-indigo-400 to-purple-500">
-            Mentorify
+            MediQueue
           </span>{" "}
           Works
         </h2>
