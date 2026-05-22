@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Markdown
+# 🎓 Mentorify - Elite Mentor Platform
 
-## Getting Started
+**Mentorify** (MediQueue) is a modern, professional, and intuitive tutor-booking web application designed to bridge the gap between students and expert mentors. It simplifies the learning journey by allowing students to browse, filter, and book specialized tutoring sessions with ease.
 
-First, run the development server:
+### 🌐 Live Website: [https://mentorify-ten.vercel.app](https://mentorify-ten.vercel.app)
 
+---
+
+## 🚀 Key Features
+
+*   **Smart Tutor Search & Filtering:** A robust search engine that supports case-insensitive name searching and date-range filtering to find the perfect tutor effortlessly.
+*   **Secure JWT Authentication:** Implements industry-standard JSON Web Token (JWT) security for protected routes, complemented by seamless Google Social Login.
+*   **Real-time Slot Management:** An intelligent booking system that automatically updates slot availability and prevents double-booking.
+*   **Dynamic Dashboard:** A personalized space for users to manage their tutoring sessions, track bookings, and update tutor profiles.
+*   **Modern UI/UX:** Features a toggleable Dark/Light mode, smooth animations powered by GSAP/Framer Motion, and a premium aesthetic.
+*   **Responsive Design:** Fully optimized for all screen sizes, ensuring a consistent experience on mobile, tablet, and desktop devices.
+
+---
+
+## 🛠 Tech Stack
+
+**Client-Side:**
+*   React.js / Next.js (App Router)
+*   Tailwind CSS
+*   HeroUI / Shadcn UI
+*   GSAP & Framer Motion
+*   Lenis Scroll
+*   React Hot Toast
+
+**Server-Side:**
+*   Node.js
+*   Express.js
+*   MongoDB
+*   JWT (JSON Web Token)
+
+---
+
+## 💻 How to Run Locally
+
+1. **Clone the repository:**
+   
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   git clone [https://github.com/your-username/mentorify.git](https://github.com/your-username/mentorify.git)
+Navigate to the project directory:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Bash
+   cd mentorify
+Install dependencies:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Bash
+   npm install
+Setup environment variables:
+Create a .env.local file and add your required API keys (Firebase, MongoDB URI, JWT Secret).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Start the development server:
 
-## Learn More
+Bash
+   npm run dev
+👨‍💻 Developer
+Sohanur Rahman
 
-To learn more about Next.js, take a look at the following resources:
+MERN Stack Web Developer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📝 Note
+This project was developed as part of a CAT_02 Assignment. I am constantly working to improve its performance and features. Feel free to explore the code and provide feedback!
