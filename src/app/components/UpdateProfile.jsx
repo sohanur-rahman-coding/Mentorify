@@ -1,81 +1,86 @@
-"use client";
+'use client';
 
 import { authClient } from "@/lib/auth-client";
-// Heroicons বাদ দিয়ে হুবহু একই জায়গায় React Icons (FiUser, FiImage) ব্যবহার করা হয়েছে
-import { FiUser, FiImage } from "react-icons/fi";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-import React from "react";
+import { FiUser, FiImage, FiLoader, FiCheck } from "react-icons/fi";
+import { Button, Input, Label, Modal, TextField } from "@heroui/react";
+import React, { useState } from "react";
 
 export function UpdateProfile() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     const name = e.target.name.value;
     const image = e.target.image.value;
 
-    await authClient.updateUser({
-      name,
-      image,
-    });
-
-    window.location.reload();
+    try {
+      await authClient.updateUser({
+        name,
+        image,
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Update failed", error);
+      setIsLoading(false);
+    }
   };
 
   return (
     <Modal>
-      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl shadow-lg transition-all active:scale-95">
-        Edit Profile
+      {/* Trigger Button - Dark Mode Compatible */}
+      <Button className="w-full bg-gray-900 dark:bg-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200 text-white font-bold py-3 rounded-2xl shadow-md transition-all active:scale-95">
+        Edit Profile Information
       </Button>
-      <Modal.Backdrop>
-        <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-md rounded-3xl overflow-hidden border-none shadow-2xl">
-            <Modal.CloseTrigger />
-            <Modal.Header className="bg-gradient-to-r from-blue-600 to-cyan-500 p-6 text-white">
-              <Modal.Heading className="text-xl font-bold">
-                Update Profile
+
+      <Modal.Backdrop className="backdrop-blur-sm">
+        <Modal.Container placement="center">
+          {/* Dialog - Added Dark Mode Backgrounds */}
+          <Modal.Dialog className="sm:max-w-md rounded-[2.5rem] p-2 border border-gray-100 dark:border-gray-800 shadow-2xl bg-white dark:bg-gray-900">
+            <Modal.Header className="p-6">
+              <Modal.Heading className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">
+                Edit Profile
               </Modal.Heading>
-              <p className="mt-1.5 text-sm leading-5 text-blue-50">
-                Update your account information below.
+              <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
+                Update your identity on <span className="text-blue-600 font-bold">Mentorify</span>
               </p>
             </Modal.Header>
-            <Modal.Body className="p-6">
-              <Surface variant="default" className="border-none">
-                <form
-                  id="update-profile-form"
-                  onSubmit={onSubmit}
-                  className="flex flex-col gap-4"
-                >
-                  <TextField className="w-full" name="name" type="text">
-                    <Label className="flex items-center gap-2 mb-1">
-                      {/* পুরোনো আইকনের জায়গায় React Icon */}
-                      <FiUser className="w-4 h-4" /> Name
-                    </Label>
-                    <Input placeholder="Enter your name" />
-                  </TextField>
 
-                  <TextField className="w-full" name="image" type="url">
-                    <Label className="flex items-center gap-2 mb-1">
-                      {/* পুরোনো আইকনের জায়গায় React Icon */}
-                      <FiImage className="w-4 h-4" /> Profile Image URL
-                    </Label>
-                    <Input placeholder="Enter image URL" />
-                  </TextField>
-                </form>
-              </Surface>
+            <Modal.Body className="px-6 pb-6">
+              <form id="update-profile-form" onSubmit={onSubmit} className="flex flex-col gap-5">
+                <TextField className="w-full" name="name" type="text">
+                  <Label className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest flex items-center gap-2 mb-2">
+                    <FiUser /> Full Name
+                  </Label>
+                  <Input placeholder="Enter your full name" className="rounded-xl border-gray-200 dark:border-gray-700 dark:bg-gray-800" />
+                </TextField>
+
+                <TextField className="w-full" name="image" type="url">
+                  <Label className="text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest flex items-center gap-2 mb-2">
+                    <FiImage /> Profile Image URL
+                  </Label>
+                  <Input placeholder="https://example.com/avatar.jpg" className="rounded-xl border-gray-200 dark:border-gray-700 dark:bg-gray-800" />
+                </TextField>
+              </form>
             </Modal.Body>
-            <Modal.Footer className="p-6 flex gap-3">
-              <Button
-                slot="close"
-                variant="secondary"
-                className="flex-1 rounded-xl"
-              >
+
+            <Modal.Footer className="px-6 pb-6 pt-2 flex gap-3">
+              <Button slot="close" variant="flat" className="flex-1 rounded-xl text-gray-600 dark:text-gray-300 dark:hover:bg-gray-800">
                 Cancel
               </Button>
               <Button
                 type="submit"
                 form="update-profile-form"
-                className="flex-1 bg-blue-600 text-white font-bold rounded-xl"
+                disabled={isLoading}
+                className="flex-1 bg-blue-600 dark:bg-blue-500 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg"
               >
-                Save Changes
+                {isLoading ? (
+                  <FiLoader className="animate-spin mr-2" />
+                ) : (
+                  <FiCheck className="mr-2" />
+                )}
+                {isLoading ? "Saving..." : "Save Changes"}
               </Button>
             </Modal.Footer>
           </Modal.Dialog>

@@ -44,21 +44,6 @@
   margin-top: -50px;
 }
 
-html.lenis {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-html {
-  scroll-behavior: smooth;
-}
 html.lenis, html.lenis body {
   height: auto;
 }
