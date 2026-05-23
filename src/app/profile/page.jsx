@@ -27,7 +27,7 @@ const Profile = () => {
                 <div className="flex justify-between items-start mb-8">
                     <div>
                         <h1 className="text-2xl font-extrabold text-gray-900 dark:text-white">My Profile</h1>
-                        <p className="text-gray-500 dark:text-gray-400 text-sm">Manage your MediQueue account</p>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm">Manage your Mentorify account</p>
                     </div>
                     <div className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-3 py-1.5 rounded-full border border-blue-100 dark:border-blue-800">
                         <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
@@ -68,7 +68,7 @@ const Profile = () => {
 
                     <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800 w-full text-center">
                         <p className="text-gray-400 dark:text-gray-600 text-[10px] uppercase tracking-widest">
-                            MediQueue Tutor Finding Platform © 2026
+                            Mentorify Tutor Finding Platform © 2026
                         </p>
                     </div>
                 </div>

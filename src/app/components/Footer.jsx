@@ -17,7 +17,7 @@ export function Footer() {
                 <FaBookOpen className="w-4 h-4" />
               </div>
               <span className="font-extrabold text-xl tracking-tight text-white">
-                MediQueue
+                Mentorify
               </span>
             </Link>
             <p className="text-sm text-zinc-400 leading-relaxed">
@@ -159,7 +159,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-xs text-zinc-500">
-            &copy; {currentYear} MediQueue. All rights reserved.
+            &copy; {currentYear} Mentorify. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-zinc-500">
             <a href="#" className="hover:text-white transition-colors">

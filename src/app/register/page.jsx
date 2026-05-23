@@ -69,7 +69,7 @@ const RegisterPage = () => {
             Create Account
           </h2>
           <p className="text-xs sm:text-sm text-foreground/50 font-medium">
-            Sign up to get started with MediQueue
+            Sign up to get started with Mentorify
           </p>
         </div>
 

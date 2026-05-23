@@ -1,7 +1,7 @@
 Markdown
 # 🎓 Mentorify - Elite Mentor Platform
 
-**Mentorify** (MediQueue) is a modern, professional, and intuitive tutor-booking web application designed to bridge the gap between students and expert mentors. It simplifies the learning journey by allowing students to browse, filter, and book specialized tutoring sessions with ease.
+**Mentorify** (Mentorify) is a modern, professional, and intuitive tutor-booking web application designed to bridge the gap between students and expert mentors. It simplifies the learning journey by allowing students to browse, filter, and book specialized tutoring sessions with ease.
 
 ### 🌐 Live Website: [https://mentorify-ten.vercel.app](https://mentorify-ten.vercel.app)
 
@@ -41,7 +41,7 @@ Markdown
 1. **Clone the repository:**
    
 ```bash
-   git clone [https://github.com/your-username/mentorify.git](https://github.com/your-username/mentorify.git)
+   git clone [https://github.com/sohanur-rahman-coding/Mentorify](https://github.com/sohanur-rahman-coding/Mentorify)
 Navigate to the project directory:
 
 Bash

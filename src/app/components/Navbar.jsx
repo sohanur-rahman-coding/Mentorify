@@ -59,7 +59,7 @@ export function Navbar() {
               <BookOpen className="w-4 h-4" />
             </div>
             <span className="font-extrabold text-xl tracking-tight text-foreground">
-              MediQueue
+              Mentorify
             </span>
           </Link>
 

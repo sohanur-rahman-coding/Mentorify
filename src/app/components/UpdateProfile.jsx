@@ -43,7 +43,7 @@ export function UpdateProfile() {
                 Edit Profile
               </Modal.Heading>
               <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                Update your identity on <span className="text-blue-600 font-bold">MediQueue</span>
+                Update your identity on <span className="text-blue-600 font-bold">Mentorify</span>
               </p>
             </Modal.Header>
 

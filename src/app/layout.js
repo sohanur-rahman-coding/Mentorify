@@ -26,7 +26,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "MediQueue - Elite Mentor Platform",
+  title: "Mentorify - Elite Mentor Platform",
   description: "Find and book expert verified mentors globally.",
 };
 
